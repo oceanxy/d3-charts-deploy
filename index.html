@@ -10,29 +10,20 @@
       // the correct url will be waiting in the browser's history for
       // the single page app to route accordingly.
 
-      // (function(l) {
-      //   if(l.search) {
-      //     const q = {}
-      //     l.search.slice(1).split('&').forEach(function(v) {
-      //       const a = v.split('=')
-      //       q[a[0]] = a.slice(1).join('=').replace(/~and~/g, '&')
-      //     })
-      //
-      //     if(q.p !== undefined) {
-      //       window.history.replaceState(null, null,
-      //         l.pathname.split('/').slice(0, 2).join('/') + (q.p || '') +
-      //         (q.q ? ('?' + q.q) : '') +
-      //         l.hash
-      //       )
-      //     }
-      //   }
-      // })(window.location)
-
       // 这段代码要放在其他js的前面
-      (function() {
-        const redirect = sessionStorage.redirect
-        delete sessionStorage.redirect
-        if(redirect && redirect !== location.href) {
-          history.replaceState(null, null, redirect)
+      (function(l) {
+        if(l.search) {
+          const q = {}
+          l.search.slice(1).split('&').forEach(function(v) {
+            const a = v.split('=')
+            q[a[0]] = a.slice(1).join('=').replace(/~and~/g, '&')
+          })
+          if(q.p !== undefined) {
+            window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + (q.p || '') +
+              (q.q ? ('?' + q.q) : '') +
+              l.hash
+            )
+          }
         }
-      })()</script><link rel="shortcut icon" href="/d3-charts-deploy/favicon.ico"><link href="/d3-charts-deploy/styles/antd.min.css" rel="stylesheet"><link href="/d3-charts-deploy/styles/app.b443cbb8a1e5fb11c9a7225857479c58.css" rel="stylesheet"></head><body><div id="root" style="height: 100%"></div><script type="text/javascript" src="/d3-charts-deploy/scripts/vendors.lib.js"></script><script type="text/javascript" src="/d3-charts-deploy/scripts/app.22ecc35c91d15ecb68da.js"></script></body></html>
+      }(window.location))</script><link rel="shortcut icon" href="/d3-charts-deploy/favicon.ico"><link href="/d3-charts-deploy/styles/antd.min.css" rel="stylesheet"><link href="/d3-charts-deploy/styles/app.b443cbb8a1e5fb11c9a7225857479c58.css" rel="stylesheet"></head><body><div id="root" style="height: 100%"></div><script type="text/javascript" src="/d3-charts-deploy/scripts/vendors.lib.js"></script><script type="text/javascript" src="/d3-charts-deploy/scripts/app.22ecc35c91d15ecb68da.js"></script></body></html>
